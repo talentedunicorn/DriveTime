@@ -47,3 +47,23 @@ a
 	background-color: $black
 	color: $white
 	padding: 3em 1em 5em
+
+	a
+		text-decoration: none
+		color: $grey
+
+		&:hover
+			color: $lightBlue
+	
+	.social
+		list-style: none
+		padding: 0
+	
+		.social-link
+			display: inline-block
+			font-size: 24px
+			font-weight: 300
+		
+	.footer-credit
+		@include susy-media($screen-large)
+			text-align: right

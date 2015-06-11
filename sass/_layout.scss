@@ -53,13 +53,37 @@ $susy: (
 	}
 }
 
-.footer-content {
-	@include container;
-	
-	.social,
-	p {
-		width: span(8);
-		display: block;
-		margin: auto;
+.footer {
+	margin-top: span(1);
+
+	.footer-content {
+		@include container;
+		
+		.social,
+		.footer-credit {
+			width: span(8);
+			display: block;
+			margin: 0 auto 30px;
+			@include susy-media($screen-large) {
+				width: span(4);
+				display: inline-block;
+			}
+		}
+
+		.social {
+			@include susy-media($screen-large) {
+				margin-left: span(2) + gutter();
+			}
+			
+			.social-link {
+				margin-right: 1em;
+			}
+		}
+
+		.footer-credit {
+			@include susy-media($screen-large) {
+				margin-left: gutter();
+			}
+		}
 	}
 }
