@@ -28,9 +28,13 @@ $susy: (
 .main {
 	@include container;
 
-	.form {
+	.form,
+	.query-results {
 		@include span(8 at 3);
 		margin-left: span(2) + gutter();
+	}
+
+	.form {
 		margin-top: span(1);
 
 		[class^="form-"] {
