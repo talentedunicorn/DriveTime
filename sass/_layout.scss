@@ -16,19 +16,50 @@ $susy: (
 .header-content {
 	@include container;
 
-	h1 {
+	.header-title {
 		@include span(8 at 3);
 		margin-left: span(2) + gutter();
-		padding-top: gutter();
-		padding-bottom: gutter();
+		margin-top: span(1);
+		margin-bottom: span(1);
 		text-align: center;
 	}
 }
 
 .main {
 	@include container;
+
+	.form {
+		@include span(8 at 3);
+		margin-left: span(2) + gutter();
+		margin-top: span(1);
+
+		[class^="form-"] {
+			@include full;
+		}
+
+		.form-label {
+			margin-bottom: .5rem;
+		}
+
+		.form-input {
+			margin-bottom: 1rem;
+			padding: 1rem .5rem;
+		}
+
+		.form-button {
+			margin-top: 1rem;
+			padding: 20px 10px;
+		}
+	}
 }
 
 .footer-content {
 	@include container;
+	
+	.social,
+	p {
+		width: span(8);
+		display: block;
+		margin: auto;
+	}
 }

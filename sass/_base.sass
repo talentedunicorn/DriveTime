@@ -9,3 +9,34 @@ body
 	.header-title
 		color: $white
 		font-weight: 300
+
+.form
+
+	.form-input
+		font-size: 18px
+		outline: none
+		border: 1px solid rgba($grey, 0.5)
+		transition: all ease-in-out .3s
+
+		&:focus
+			border-color: $black
+
+	.form-button
+		background-color: $lightBlue
+		border: 1px $lightBlue
+		color: $white
+		font-size: 24px
+		font-weight: 300
+		outline: none
+		transition: all ease-in-out .3s
+
+		&:hover
+			background-color: darken($lightBlue, 5%)
+
+		&:active
+			background-color: darken($lightBlue, 9%)
+
+.footer
+	background-color: $black
+	color: $white
+	padding: 3em 1em 5em
