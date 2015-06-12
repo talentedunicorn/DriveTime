@@ -1,6 +1,7 @@
-// Load Distance Matrix Service
-var distanceMatrixService;
+var distanceMatrixService,
+	geolocationService = navigator.geolocation;
 
+// Load Distance Matrix Service
 GoogleMapsLoader.load(function (google) {
 	distanceMatrixService = new google.maps.DistanceMatrixService();
 });
@@ -68,8 +69,15 @@ queryForm.submit(function (e) {
 	if (originVal.length > 0 && destinationVal.length > 0)
 	{
 		getDistance(originVal, destinationVal).then(function(data) {
-				var results = parseResponse(data);
-				showResults('<p>It takes roughly <strong>' + results.duration + '</strong> to go from <strong>' + results.from + '</strong> to <strong>' + results.to+ '</strong></p>');
+				if (data.rows[0].elements[0].status == 'OK')
+				{
+					// Valid results
+					var results = parseResponse(data);
+					showResults('<p>It takes roughly <strong>' + results.duration + '</strong> to go from <strong>' + results.from + '</strong> to <strong>' + results.to+ '</strong></p>');
+				} else
+				{
+					showResults('<p><strong>Sorry</strong>, No results found!</p>');
+				}
 			});
 	} else {
 		showResults('<p class="error">You need to fill in both fields</p>');
@@ -84,3 +92,33 @@ function showResults(results) {
 	resultsContainer.append(results);
 }
 
+
+// Use HTML5 navigator
+if (geolocationService)
+{
+	geolocationService.getCurrentPosition(function (position) {
+		// Get current position
+		var pos = {
+			latitude: position.coords.latitude,
+			longitude: position.coords.longitude
+		};
+		// console.log(pos);
+		$('#query-form .from').val(pos.latitude + ',' + pos.longitude);
+	
+	}, function () {
+		handleNoGeolocation(true);
+	});
+} else {
+	// Browser doesn't support HTML5 geolocation
+	handleNoGeolocation(false);
+}
+
+function handleNoGeolocation(errorFlag){
+	if (errorFlag) {
+		console.log('Geolocation failed to initialize. Try to reload and allow Geolocation');
+	} else {
+		console.log('Your browser doesn\'t support HTML5 geolocation');
+	}
+
+	// Do something here
+}
