@@ -122,3 +122,30 @@ function handleNoGeolocation(errorFlag){
 
 	// Do something here
 }
+
+
+var notification = $('.notification'),
+	notificationMsg = notification.find('.message');
+// Notification
+function notify(message, timeout) {
+		timeout = timeout || 3000;
+
+	if (message.trim().length > 0)
+	{
+		showNotification(message);
+
+		setTimeout(function() {
+			hideNotification();
+		}, timeout);
+	}
+
+}
+
+function showNotification(message) {
+	notificationMsg.text(message);
+	notification.slideDown();
+}
+
+function hideNotification() {
+	notification.slideUp();
+}
