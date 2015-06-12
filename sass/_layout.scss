@@ -28,7 +28,7 @@ $susy: (
 	@include container;
 
 	.header-title {
-		@include span(8 at 3);
+		@include span(8);
 		margin-left: span(2) + gutter();
 		margin-top: span(1);
 		margin-bottom: span(1);
@@ -41,7 +41,7 @@ $susy: (
 
 	.form,
 	.query-results {
-		@include span(8 at 3);
+		@include span(8);
 		margin-left: span(2) + gutter();
 	}
 
