@@ -4,11 +4,11 @@ $susy: (
 	gutters: .25,
 	global-box-sizing: border-box,
 	container: 960px,
-	debug: (
+/*	debug: (
 		image: show,
 		output: overlay,
 		toggle: top right
-	)
+	) */
 );
 
 @include global-box-sizing;
