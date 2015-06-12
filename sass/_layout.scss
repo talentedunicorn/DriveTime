@@ -13,6 +13,17 @@ $susy: (
 
 @include global-box-sizing;
 
+.notification {
+	display: none;
+	position: fixed;
+	width: 100%;
+
+	.notification-content {
+		@include container;
+		padding: 1em;
+	}
+}
+
 .header-content {
 	@include container;
 
