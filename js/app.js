@@ -68,7 +68,12 @@ queryForm.submit(function (e) {
 	// Validate
 	if (originVal.length > 0 && destinationVal.length > 0)
 	{
-		getDistance(originVal, destinationVal).then(function(data) {
+		showNotification('Calculating...');
+		getDistance(originVal, destinationVal)
+			.done(function() {
+				hideNotification();
+			})
+			.then(function(data) {
 				if (data.rows[0].elements[0].status == 'OK')
 				{
 					// Valid results
