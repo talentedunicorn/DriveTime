@@ -1,10 +1,6 @@
-var distanceMatrixService,
+var distanceMatrixService = new google.maps.DistanceMatrixService(),
+	geocoderService = new google.maps.Geocoder(),
 	geolocationService = navigator.geolocation;
-
-// Load Distance Matrix Service
-GoogleMapsLoader.load(function (google) {
-	distanceMatrixService = new google.maps.DistanceMatrixService();
-});
 
 // Get Distance
 function getDistance(origin, destination, travelMode) {
