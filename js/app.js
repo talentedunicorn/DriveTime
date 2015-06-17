@@ -95,16 +95,21 @@ function showResults(results) {
 
 
 // Use HTML5 navigator
-if (geolocationService)
+if ("geolocation" in navigator)
 {
 	geolocationService.getCurrentPosition(function (position) {
 		// Get current position
 		var pos = {
 			latitude: position.coords.latitude,
 			longitude: position.coords.longitude
-		};
-		// console.log(pos);
-		$('#query-form .from').val(pos.latitude + ',' + pos.longitude);
+		},
+			myLocation = '';
+
+		getLocationName(pos).then(function (results) {
+			myLocation = results[0].formatted_address;
+			$('#query-form .from').val(myLocation);
+		});
+
 	
 	}, function () {
 		handleNoGeolocation(true);
@@ -113,6 +118,24 @@ if (geolocationService)
 	// Browser doesn't support HTML5 geolocation
 	handleNoGeolocation(false);
 }
+
+
+function getLocationName(coordinates) {
+	var	deferred = $.Deferred();
+
+	geocoderService.geocode({'latLng': new google.maps.LatLng(coordinates.latitude, coordinates.longitude)}, function (results, status) {
+		if (status == google.maps.GeocoderStatus.OK)
+		{
+			deferred.resolve(results);
+		} else {
+			console.warn('Address not found');
+			deferred.reject(results);
+		}
+	});
+
+	return deferred.promise();
+}
+
 
 function handleNoGeolocation(errorFlag){
 	if (errorFlag) {
