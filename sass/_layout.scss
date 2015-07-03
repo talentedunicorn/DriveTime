@@ -24,6 +24,10 @@ $susy: (
 	}
 }
 
+.header {
+	height: 100%;
+}
+
 .header-content {
 	@include container;
 
